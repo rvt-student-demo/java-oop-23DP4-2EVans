@@ -1,19 +1,28 @@
 package rvt.IOU;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class IOU {
+
+    private final Map<String, Double> debts;
+
+    public IOU() {
+        this.debts = new HashMap<>();
+    }
+
     public void setSum(String toWhom, double amount) {
-
+        if (toWhom == null) {
+            return;
+        }
+        debts.put(toWhom, amount);
     }
+
     public double howMuchDoIOweTo(String toWhom) {
-        return 0;
-    }
-
-    public static void main(String[] args) {
-        IOU mattsIOU = new IOU();
-        mattsIOU.setSum("Arthur", 51.5);
-        mattsIOU.setSum("Michael", 30);
-
-        System.out.println(mattsIOU.howMuchDoIOweTo("Arthur"));
-        System.out.println(mattsIOU.howMuchDoIOweTo("Michael"));
+        if (toWhom == null) {
+            return 0;
+        }
+        return debts.getOrDefault(toWhom, 0.0);
     }
 }
+
