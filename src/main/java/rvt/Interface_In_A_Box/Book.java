@@ -17,6 +17,21 @@ public class Book implements Packable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Book book = (Book) obj;
+        return Double.compare(book.weight, weight) == 0 &&
+               author.equals(book.author) &&
+               name.equals(book.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return author.hashCode() + name.hashCode() + Double.hashCode(weight);
+    }
+
+    @Override
     public String toString() {
         return this.author + ": " + this.name;
     }

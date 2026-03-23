@@ -17,6 +17,21 @@ public class CD implements Packable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        CD cd = (CD) obj;
+        return year == cd.year &&
+               artist.equals(cd.artist) &&
+               name.equals(cd.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return artist.hashCode() + name.hashCode() + year;
+    }
+
+    @Override
     public String toString() {
         return this.artist + ": " + this.name + " (" + this.year + ")";
     }
